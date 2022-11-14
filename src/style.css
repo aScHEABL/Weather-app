@@ -11,10 +11,11 @@
     margin: 0;
 }
 
+
 body {
     width: 100vw;
     min-height: 100vh;
-    padding: 7rem;
+    padding: 3.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,7 +39,82 @@ main {
 
 .weather-info-description {
     margin-bottom: 1rem;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 500;
     line-height: 1;
+}
+
+.weather-info-city {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.weather-info-date {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.weather-info-time {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.weather-info-temperature {
+    margin-bottom: 0.2rem;
+    margin-top: 1rem;
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+.weather-info-unit-f {
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.weather-info-icon-div {
+    width: 5rem;
+}
+
+.weather-info-icon {
+    width: 5.6rem;
+}
+
+.search-box {
+    margin-top: 1rem;
+    height: 30px;
+    max-width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--white);
+    padding: 6px 12px;
+}
+
+.search-box-input {
+    height: 100%;
+    flex-shrink: 2;
+    max-width: 150px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+::placeholder {
+    color: var(--white);
+    opacity: 1;
+}
+
+.search-icon {
+    height: 18px;
+    min-width: 18px;
+    background-image: url(https://bscottnz.github.io/weather-app/imgs/search-icon.afa8a864e76e9c624eaedad03c287834.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
