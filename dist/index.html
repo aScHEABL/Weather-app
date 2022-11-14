@@ -10,17 +10,26 @@
 </head>
 <body>
     <main>
-        <div class="glass-layer-div glass">
-            <img class="black-frame" class="black-frame">
-            <div class="today-weather-div">
-                <img src="../src/resources/sun-wireless-outline.png" alt="today-weather-icon" class="today-weather-icon">
+        <div class="weather-info">
+            <div class="weather-info-description">Few Clouds</div>
+            <div class="weather-info-city">Auckland</div>
+            <div class="weather-info-date">Monday, 14th Nov '22</div>
+            <div class="weather-info-time">9:46 pm</div>
+            <div class="weather-info-temperature">16 °C</div>
+            <div class="weather-info-unit-f">Display °F</div>
+            <div class="weather-info-icon">
+                <img src="../src/resources/sun-wireless-outline.png">
             </div>
-            <div class="today-highlight-div"></div>
-            <!-- <h3 class="forecast-h3">Weather forecast</h3> -->
-            <div class="forecast-div"></div>
-            <!-- <h3 class="weather-condition-h3">Weather condition map</h3> -->
-            <div class="weather-condition-map-div"></div>
+            <div class="search-box">
+                <input type="text" class="search-box-input" placeholder="Search Location...">
+                <div class="search-icon"></div>
+            </div>
+            <div class="error-msg"></div>
         </div>
+        <div class="weather-details-container"></div>
     </main>
+    <div class="forecast">
+
+    </div>
 </body>
 </html>
