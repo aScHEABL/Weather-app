@@ -14,7 +14,6 @@
 body {
     width: 100vw;
     min-height: 100vh;
-    
     padding: 7rem;
     display: flex;
     flex-direction: column;
@@ -31,4 +30,15 @@ main {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.weather-info {
+    max-width: 55%;
+}
+
+.weather-info-description {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1;
 }
