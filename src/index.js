@@ -1,1 +1,6 @@
-console.log("Hello world!");
+function runAPI() {
+    let searchCity = "hong kong";
+    console.log(searchCity);
+}
+
+runAPI();

@@ -13,7 +13,6 @@ body {
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
-    overflow: hidden;
 }
 
 main {
@@ -25,14 +24,18 @@ main {
 .glass-layer-div {
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-areas: 
+    "today-weather today-highlight"
+    "weather-forecast weather-condition-map";
 }
 
 .black-frame {
     background: url(./resources/weather-app-layout-2.png) no-repeat;
-    background-size: cover;
+    background-size: contain;
     width: 100%;
-    max-height: 100%;
     height: 100%;
+    position: absolute;
 }
 
 
@@ -43,4 +46,12 @@ main {
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.today-weather-icon {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    top: 0;
+    z-index: 5;
 }
