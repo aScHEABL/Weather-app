@@ -1,1 +1,1 @@
-console.log("Hello world!");
+console.log("hong kong");
