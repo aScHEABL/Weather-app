@@ -118,3 +118,31 @@ main {
     background-repeat: no-repeat;
     cursor: pointer;
 }
+
+.error-msg {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    visibility: hidden;
+}
+
+.weather-details {
+    margin-bottom: 3rem;
+    display: flex;
+}
+
+.weather-details-icon {
+    width: 3rem;
+    margin-right: 1rem;
+}
+
+.weather-details-label {
+    margin-bottom: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.weather-details-data {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
