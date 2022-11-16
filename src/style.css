@@ -1,231 +1,236 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 :root {
-    --dark: #191B1F;
-    --dandelion: #FFC62D;
-    --white: #F5F5F5;
+  --dark: #191b1f;
+  --dandelion: #ffc62d;
+  --white: #f5f5f5;
 }
 
-*, *::before, ::after {
-    box-sizing: border-box;
-    margin: 0;
+*,
+*::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
 }
-
 
 body {
-    width: 100vw;
-    min-height: 100vh;
-    padding: 3.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)
-    ), url(https://cdn.discordapp.com/attachments/1041626172871684158/1041627277693304933/water_trees_games_forest_nature_drawings_widescreen_3840x2160.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url(https://cdn.discordapp.com/attachments/1041626172871684158/1041627277693304933/water_trees_games_forest_nature_drawings_widescreen_3840x2160.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--white);
+  font-family: "Montserrat", sans-serif;
 }
 
 main {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .weather-info {
-    max-width: 55%;
+  max-width: 55%;
 }
 
 .weather-info-description {
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .weather-info-city {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .weather-info-date {
-    font-size: 1rem;
-    font-weight: 600;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .weather-info-time {
-    font-size: 1rem;
-    font-weight: 600;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .weather-info-temperature {
-    margin-bottom: 0.2rem;
-    margin-top: 1rem;
-    font-size: 4rem;
-    font-weight: 900;
+  margin-bottom: 0.2rem;
+  margin-top: 1rem;
+  font-size: 4rem;
+  font-weight: 900;
 }
 
 .weather-info-unit-f {
-    margin-bottom: 2.5rem;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .weather-info-icon-div {
-    width: 5rem;
+  width: 5rem;
 }
 
 .weather-info-icon {
-    width: 5.6rem;
+  width: 5.6rem;
 }
 
 .search-box {
-    margin-top: 1rem;
-    height: 30px;
-    max-width: 250px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid var(--white);
-    padding: 6px 12px;
+  margin-top: 1rem;
+  height: 30px;
+  max-width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--white);
+  padding: 6px 12px;
 }
 
 .search-box-input {
-    height: 100%;
-    flex-shrink: 2;
-    max-width: 150px;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    outline: none;
-    color: var(--white);
-    font-size: 1rem;
-    font-weight: 600;
+  height: 100%;
+  flex-shrink: 2;
+  max-width: 150px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 ::placeholder {
-    color: var(--white);
-    opacity: 1;
+  color: var(--white);
+  opacity: 1;
 }
 
 .search-icon {
-    height: 18px;
-    min-width: 18px;
-    background-image: url(https://bscottnz.github.io/weather-app/imgs/search-icon.afa8a864e76e9c624eaedad03c287834.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    cursor: pointer;
+  height: 18px;
+  min-width: 18px;
+  background-image: url(https://bscottnz.github.io/weather-app/imgs/search-icon.afa8a864e76e9c624eaedad03c287834.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .error-msg {
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    visibility: hidden;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  visibility: hidden;
 }
 
 .weather-details {
-    margin-bottom: 3rem;
-    display: flex;
+  margin-bottom: 3rem;
+  display: flex;
 }
 
 .weather-details-icon {
-    width: 3rem;
-    margin-right: 1rem;
+  width: 3rem;
+  margin-right: 1rem;
 }
 
 .weather-details-label {
-    margin-bottom: 0.6rem;
-    font-size: 1.2rem;
-    font-weight: 600;
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .weather-details-data {
-    font-size: 1.3rem;
-    font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .change-forecast {
-    display: flex;
-    align-items: center;
-    margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
 }
 
-.daily-button, .hourly-button {
-    margin-right: 2rem;
-    font-size: 1.4rem;
-    font-weight: 600;
-    padding: 0.6rem 1.2rem;
-    border: 2px solid rgba(0,0,0,0);
-    cursor: pointer;
+.daily-button,
+.hourly-button {
+  margin-right: 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
 
 .forecast-selected {
-    border: 2px solid #f5f5f5;
-    border-radius: 3px;
+  border: 2px solid #f5f5f5;
+  border-radius: 3px;
 }
 
 .change-hours {
-    margin-left: 1rem;
-    width: 9rem;
-    justify-content: space-between;
-    align-items: center;
+  margin-left: 1rem;
+  width: 9rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .forecast-daily-div {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
-
 .forecast-daily-day {
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-weight: 500;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .forecast-daily-temperature-high {
-    margin-bottom: 0.4rem;
-    font-size: 3rem;
-    font-weight: 700;
+  margin-bottom: 0.4rem;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .forecast-daily-temperature-low {
-    font-size: 1.2rem;
-    font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .forecast-daily-icon {
-    margin-top: 2rem;
-    width: 4rem;
+  margin-top: 2rem;
+  width: 4rem;
 }
 
 .forecast-hourly-div {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .forecast-hourly {
-    width: 8.5rem;
-    height: 16.3rem;
-    display: flex;
-    flex-direction: column;
+  width: 8.5rem;
+  height: 16.3rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .forecast-hourly-day {
-    margin-bottom: 2rem;
-    font-size: 2rem;
-    font-weight: 500;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .forecast-hourly-current-temperature {
-    font-size: 3rem;
-    font-weight: 700;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .forecast-hourly-icon {
-    margin-top: 2rem;
-    width: 4rem;
+  margin-top: 2rem;
+  width: 4rem;
 }
