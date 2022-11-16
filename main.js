@@ -12,7 +12,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ geoLocationConvert)
 /* harmony export */ });
-async function geoLocationConvert(cityName) {
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
+
+
+async function geoLocationConvert() {
+  let cityName = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName;
   const limitNumber = "1";
   const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
   const apiCall =
@@ -23,12 +27,45 @@ async function geoLocationConvert(cityName) {
     "&appid=" +
     apiKey;
 
-  // const response = await fetch(apiCall, { mode: "cors" });
-  // const geoData = await response.json();
-  // console.log(geoData);
-  console.log(geoData.coord.lon, geoData.coord.lat);
+  const response = await fetch(apiCall, { mode: "cors" });
+  const geoData = await response.json();
+
+  const coordinateLat = geoData[0].lat;
+  const coordinateLon = geoData[0].lon
+  console.log(geoData);
+  console.log(`Lat: ${geoData[0].lat} Lon: ${geoData[0].lon}`);
+  
+  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat = coordinateLat;
+  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon = coordinateLon;
 }
 
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "globalVariables": () => (/* binding */ globalVariables)
+/* harmony export */ });
+/* harmony import */ var _geocodingAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geocodingAPI */ "./src/geocodingAPI.js");
+/* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
+console.log("Hello World!");
+
+
+
+let globalVariables = {
+    cityName : "hong kong",
+    coordinateLat : "",
+    coordinateLon : ""
+}
+
+;(0,_stringChecker__WEBPACK_IMPORTED_MODULE_1__["default"])();
+// geoLocationConvert();
 
 /***/ }),
 
@@ -42,16 +79,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ stringChecker)
 /* harmony export */ });
-function stringChecker(string) {
-    let cityName = string;
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
+
+
+function stringChecker() {
+    let cityName = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName;
     // regExp rules
     const whiteSpaceInTheMiddle = /\b\s+\b/g;
 
     whiteSpaceInTheMiddle.test(cityName) ? concatString() : false;
     function concatString() {
-        cityName = cityName.replace(whiteSpaceInTheMiddle, "+");
+        cityName = cityName.replaceAll(whiteSpaceInTheMiddle, "+");
     }
-    return cityName;
+    ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName = cityName;
 }
 
 
@@ -113,24 +153,12 @@ function stringChecker(string) {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _geocodingAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geocodingAPI */ "./src/geocodingAPI.js");
-/* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
-
-
-
-let cityName = "hong kong";
-
-cityName = (0,_stringChecker__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
-(0,_geocodingAPI__WEBPACK_IMPORTED_MODULE_0__["default"])(cityName);
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=main.js.map
