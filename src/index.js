@@ -1,3 +1,7 @@
 import geoLocationConvert from "./geocodingAPI";
+import stringChecker from "./stringChecker";
 
-geoLocationConvert();
+let cityName = "hong kong";
+
+cityName = stringChecker(cityName);
+geoLocationConvert(cityName);
