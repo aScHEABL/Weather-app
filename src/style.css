@@ -173,3 +173,59 @@ main {
     justify-content: space-between;
     align-items: center;
 }
+
+.forecast-daily-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.forecast-daily-day {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.forecast-daily-temperature-high {
+    margin-bottom: 0.4rem;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.forecast-daily-temperature-low {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.forecast-daily-icon {
+    margin-top: 2rem;
+    width: 4rem;
+}
+
+.forecast-hourly-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecast-hourly {
+    width: 8.5rem;
+    height: 16.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.forecast-hourly-day {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.forecast-hourly-current-temperature {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.forecast-hourly-icon {
+    margin-top: 2rem;
+    width: 4rem;
+}
