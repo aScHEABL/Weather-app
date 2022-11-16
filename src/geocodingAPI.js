@@ -12,4 +12,5 @@ export default async function geoLocationConvert(cityName) {
   // const response = await fetch(apiCall, { mode: "cors" });
   // const geoData = await response.json();
   // console.log(geoData);
+  console.log(geoData.coord.lon, geoData.coord.lat);
 }
