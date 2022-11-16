@@ -2,20 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/geocodingAPI.js":
-/*!*****************************!*\
-  !*** ./src/geocodingAPI.js ***!
-  \*****************************/
+/***/ "./src/geoLocationConvertAPI.js":
+/*!**************************************!*\
+  !*** ./src/geoLocationConvertAPI.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ geoLocationConvert)
+/* harmony export */   "default": () => (/* binding */ geoLocationConvertAPI)
 /* harmony export */ });
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
 
 
-async function geoLocationConvert() {
+async function geoLocationConvertAPI() {
   let cityName = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName;
   const limitNumber = "1";
   const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
@@ -30,13 +30,14 @@ async function geoLocationConvert() {
   const response = await fetch(apiCall, { mode: "cors" });
   const geoData = await response.json();
 
-  const coordinateLat = geoData[0].lat;
-  const coordinateLon = geoData[0].lon
-  console.log(geoData);
-  console.log(`Lat: ${geoData[0].lat} Lon: ${geoData[0].lon}`);
+  // console.log(geoData);
+  // console.log(`Lat: ${geoData[0].lat} Lon: ${geoData[0].lon}`);
   
-  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat = coordinateLat;
-  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon = coordinateLon;
+  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat = geoData[0].lat;
+  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon = geoData[0].lon;
+  console.log(`Lat: ${___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat} Lon: ${___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon}`);
+  console.log(typeof geoData[0].lat)
+  console.log(typeof geoData[0].lon)
 }
 
 
@@ -52,20 +53,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "globalVariables": () => (/* binding */ globalVariables)
 /* harmony export */ });
-/* harmony import */ var _geocodingAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geocodingAPI */ "./src/geocodingAPI.js");
+/* harmony import */ var _geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geoLocationConvertAPI */ "./src/geoLocationConvertAPI.js");
 /* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
+/* harmony import */ var _weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherDataAPI */ "./src/weatherDataAPI.js");
 console.log("Hello World!");
+
 
 
 
 let globalVariables = {
     cityName : "hong kong",
-    coordinateLat : "",
-    coordinateLon : ""
+    coordinateLat : 0,
+    coordinateLon : 0
 }
 
 ;(0,_stringChecker__WEBPACK_IMPORTED_MODULE_1__["default"])();
-// geoLocationConvert();
+(0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_0__["default"])();
+console.log(globalVariables.cityName);
+console.log(`Lat: ${globalVariables.coordinateLat} Lon: ${globalVariables.coordinateLon}`);
+console.log(typeof globalVariables.coordinateLat);
+// weatherDataAPI();
 
 /***/ }),
 
@@ -94,6 +101,37 @@ function stringChecker() {
     ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName = cityName;
 }
 
+
+/***/ }),
+
+/***/ "./src/weatherDataAPI.js":
+/*!*******************************!*\
+  !*** ./src/weatherDataAPI.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ weatherDataAPI)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
+
+
+async function weatherDataAPI() {
+    const coordinateLat = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat;
+    const coordinateLon = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon;
+    const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
+    // const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}";
+    const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat="
+    coordinateLat +
+    "&lon=" + 
+    coordinateLon + 
+    "&appid=" + 
+    apiKey;
+
+    // console.log(apiCall);
+    console.log(`Lat: ${coordinateLat} Lon: ${coordinateLon}`)
+}
 
 /***/ })
 
