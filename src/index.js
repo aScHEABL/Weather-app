@@ -1,7 +1,12 @@
+console.log("Hello World!");
 import geoLocationConvert from "./geocodingAPI";
 import stringChecker from "./stringChecker";
 
-let cityName = "hong kong";
+export let globalVariables = {
+    cityName : "hong kong",
+    coordinateLat : "",
+    coordinateLon : ""
+}
 
-cityName = stringChecker(cityName);
-geoLocationConvert(cityName);
+stringChecker();
+// geoLocationConvert();
