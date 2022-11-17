@@ -1,4 +1,5 @@
 import stringChecker from "./stringChecker";
+import geoLocationConverterAPI from "./geoLocationConvertAPI";
 
 const searchInput_DOM = document.querySelector("[data-search-input]");
 const searchButton_DOM = document.querySelector("[data-search-button]");
@@ -10,5 +11,8 @@ searchButton_DOM.addEventListener("click", () => {
     //check if the search input is empty, if not then convert space to +
     cityName = stringChecker(cityName);
     // if boolean returns true, search for the city, if false exit the function
-    (cityName) ? console.log(`Search for ${cityName}`) : false;
+    if (cityName) {
+        const coordinates = geoLocationConverterAPI(cityName);
+        console.log(coordinates);
+    } else return
 })
