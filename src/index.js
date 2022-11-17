@@ -1,5 +1,6 @@
 import stringChecker from "./stringChecker";
 import geoLocationConverterAPI from "./geoLocationConvertAPI";
+import weatherDataAPI from "./weatherDataAPI";
 
 const searchInput_DOM = document.querySelector("[data-search-input]");
 const searchButton_DOM = document.querySelector("[data-search-button]");
@@ -14,5 +15,6 @@ searchButton_DOM.addEventListener("click", () => {
     if (cityName) {
         const coordinates = geoLocationConverterAPI(cityName);
         console.log(coordinates);
+        // weatherDataAPI(coordinates.lat, coordinates.lon);
     } else return
 })
