@@ -2,6 +2,42 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/geoLocationConvertAPI.js":
+/*!**************************************!*\
+  !*** ./src/geoLocationConvertAPI.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ geoLocationConverterAPI)
+/* harmony export */ });
+async function geoLocationConverterAPI(cityName) {
+  console.log(`Search for ${cityName}`)
+  const limitNumber = 1;
+  const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
+  const apiCall = "http://api.openweathermap.org/geo/1.0/direct?q=" +
+  cityName +
+  "&limit=" +
+  limitNumber +
+  "&appid=" +
+  apiKey;
+
+  const response = await fetch(apiCall, { mode: "cors"});
+  const geoData = await response.json();
+  let coordinates = {
+    lat: 0,
+    lon: 0
+  }
+
+  coordinates.lat = geoData[0].lat;
+  coordinates.lon = geoData[0].lon;
+
+  return coordinates;
+}
+
+/***/ }),
+
 /***/ "./src/stringChecker.js":
 /*!******************************!*\
   !*** ./src/stringChecker.js ***!
@@ -88,6 +124,8 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
+/* harmony import */ var _geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./geoLocationConvertAPI */ "./src/geoLocationConvertAPI.js");
+
 
 
 const searchInput_DOM = document.querySelector("[data-search-input]");
@@ -100,7 +138,10 @@ searchButton_DOM.addEventListener("click", () => {
     //check if the search input is empty, if not then convert space to +
     cityName = (0,_stringChecker__WEBPACK_IMPORTED_MODULE_0__["default"])(cityName);
     // if boolean returns true, search for the city, if false exit the function
-    (cityName) ? console.log(`Search for ${cityName}`) : false;
+    if (cityName) {
+        const coordinates = (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
+        console.log(coordinates);
+    } else return
 })
 })();
 
