@@ -29,15 +29,17 @@ async function geoLocationConvertAPI() {
 
   const response = await fetch(apiCall, { mode: "cors" });
   const geoData = await response.json();
-
-  // console.log(geoData);
-  // console.log(`Lat: ${geoData[0].lat} Lon: ${geoData[0].lon}`);
   
-  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat = geoData[0].lat;
-  ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon = geoData[0].lon;
-  console.log(`Lat: ${___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat} Lon: ${___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon}`);
-  console.log(typeof geoData[0].lat)
-  console.log(typeof geoData[0].lon)
+  const getLat = () => {
+    return geoData[0].lat;
+  }
+  const getLon = () => {
+    return geoData[0].lon;
+  }
+
+  const coordinateLat = getLat();
+
+  coordinateLat.then((lat) => ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat = lat)
 }
 
 
@@ -56,23 +58,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geoLocationConvertAPI */ "./src/geoLocationConvertAPI.js");
 /* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
 /* harmony import */ var _weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherDataAPI */ "./src/weatherDataAPI.js");
+
+
 console.log("Hello World!");
 
 
 
 
 let globalVariables = {
-    cityName : "hong kong",
-    coordinateLat : 0,
-    coordinateLon : 0
+    cityName : "hong kong"
 }
 
 ;(0,_stringChecker__WEBPACK_IMPORTED_MODULE_1__["default"])();
-(0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_0__["default"])();
-console.log(globalVariables.cityName);
-console.log(`Lat: ${globalVariables.coordinateLat} Lon: ${globalVariables.coordinateLon}`);
-console.log(typeof globalVariables.coordinateLat);
+// geoLocationConvertAPI();
 // weatherDataAPI();
+
+console.log(globalVariables);
 
 /***/ }),
 
