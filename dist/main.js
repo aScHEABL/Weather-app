@@ -2,81 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/geoLocationConvertAPI.js":
-/*!**************************************!*\
-  !*** ./src/geoLocationConvertAPI.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ geoLocationConvertAPI)
-/* harmony export */ });
-/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
-
-
-async function geoLocationConvertAPI() {
-  let cityName = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName;
-  const limitNumber = "1";
-  const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
-  const apiCall =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
-    cityName +
-    "&limit=" +
-    limitNumber +
-    "&appid=" +
-    apiKey;
-
-  const response = await fetch(apiCall, { mode: "cors" });
-  const geoData = await response.json();
-  
-  const getLat = () => {
-    return geoData[0].lat;
-  }
-  const getLon = () => {
-    return geoData[0].lon;
-  }
-
-  const coordinateLat = getLat();
-
-  coordinateLat.then((lat) => ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat = lat)
-}
-
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "globalVariables": () => (/* binding */ globalVariables)
-/* harmony export */ });
-/* harmony import */ var _geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geoLocationConvertAPI */ "./src/geoLocationConvertAPI.js");
-/* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
-/* harmony import */ var _weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherDataAPI */ "./src/weatherDataAPI.js");
-
-
-console.log("Hello World!");
-
-
-
-
-let globalVariables = {
-    cityName : "hong kong"
-}
-
-;(0,_stringChecker__WEBPACK_IMPORTED_MODULE_1__["default"])();
-// geoLocationConvertAPI();
-// weatherDataAPI();
-
-console.log(globalVariables);
-
-/***/ }),
-
 /***/ "./src/stringChecker.js":
 /*!******************************!*\
   !*** ./src/stringChecker.js ***!
@@ -87,51 +12,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ stringChecker)
 /* harmony export */ });
-/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
-
-
-function stringChecker() {
-    let cityName = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName;
-    // regExp rules
+function stringChecker(string) {
+    if (string.length === 0) {
+        console.log("Search input is empty.");
+        return false
+    } else {
     const whiteSpaceInTheMiddle = /\b\s+\b/g;
-
-    whiteSpaceInTheMiddle.test(cityName) ? concatString() : false;
-    function concatString() {
-        cityName = cityName.replaceAll(whiteSpaceInTheMiddle, "+");
+    return string = string.replaceAll(whiteSpaceInTheMiddle, "+");
     }
-    ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.cityName = cityName;
-}
-
-
-/***/ }),
-
-/***/ "./src/weatherDataAPI.js":
-/*!*******************************!*\
-  !*** ./src/weatherDataAPI.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ weatherDataAPI)
-/* harmony export */ });
-/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! . */ "./src/index.js");
-
-
-async function weatherDataAPI() {
-    const coordinateLat = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLat;
-    const coordinateLon = ___WEBPACK_IMPORTED_MODULE_0__.globalVariables.coordinateLon;
-    const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
-    // const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}";
-    const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat="
-    coordinateLat +
-    "&lon=" + 
-    coordinateLon + 
-    "&appid=" + 
-    apiKey;
-
-    // console.log(apiCall);
-    console.log(`Lat: ${coordinateLat} Lon: ${coordinateLon}`)
 }
 
 /***/ })
@@ -192,12 +80,30 @@ async function weatherDataAPI() {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
+
+
+const searchInput_DOM = document.querySelector("[data-search-input]");
+const searchButton_DOM = document.querySelector("[data-search-button]");
+let cityName = "";
+
+searchButton_DOM.addEventListener("click", () => {
+    console.log("Search button has been clicked.");
+    cityName = searchInput_DOM.value;
+    //check if the search input is empty, if not then convert space to +
+    cityName = (0,_stringChecker__WEBPACK_IMPORTED_MODULE_0__["default"])(cityName);
+    // if boolean returns true, search for the city, if false exit the function
+    (cityName) ? console.log(`Search for ${cityName}`) : false;
+})
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=main.js.map

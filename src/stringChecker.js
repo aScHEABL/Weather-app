@@ -1,13 +1,9 @@
-import { globalVariables } from ".";
-
-export default function stringChecker() {
-    let cityName = globalVariables.cityName;
-    // regExp rules
+export default function stringChecker(string) {
+    if (string.length === 0) {
+        console.log("Search input is empty.");
+        return false
+    } else {
     const whiteSpaceInTheMiddle = /\b\s+\b/g;
-
-    whiteSpaceInTheMiddle.test(cityName) ? concatString() : false;
-    function concatString() {
-        cityName = cityName.replaceAll(whiteSpaceInTheMiddle, "+");
+    return string = string.replaceAll(whiteSpaceInTheMiddle, "+");
     }
-    globalVariables.cityName = cityName;
 }

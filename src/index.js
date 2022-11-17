@@ -1,16 +1,14 @@
-'use strict';
-
-console.log("Hello World!");
-import geoLocationConvertAPI from "./geoLocationConvertAPI";
 import stringChecker from "./stringChecker";
-import weatherDataAPI from "./weatherDataAPI";
 
-export let globalVariables = {
-    cityName : "hong kong"
-}
+const searchInput_DOM = document.querySelector("[data-search-input]");
+const searchButton_DOM = document.querySelector("[data-search-button]");
+let cityName = "";
 
-stringChecker();
-// geoLocationConvertAPI();
-// weatherDataAPI();
-
-console.log(globalVariables);
+searchButton_DOM.addEventListener("click", () => {
+    console.log("Search button has been clicked.");
+    cityName = searchInput_DOM.value;
+    //check if the search input is empty, if not then convert space to +
+    cityName = stringChecker(cityName);
+    // if boolean returns true, search for the city, if false exit the function
+    (cityName) ? console.log(`Search for ${cityName}`) : false;
+})
