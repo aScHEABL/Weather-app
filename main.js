@@ -58,6 +58,33 @@ function stringChecker(string) {
     }
 }
 
+/***/ }),
+
+/***/ "./src/weatherDataAPI.js":
+/*!*******************************!*\
+  !*** ./src/weatherDataAPI.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ weatherDataAPI)
+/* harmony export */ });
+async function weatherDataAPI(coordinateLat, coordinateLon) {
+    const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
+    const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat="
+    coordinateLat +
+    "&lon=" + 
+    coordinateLon + 
+    "&appid=" + 
+    apiKey;
+    
+    // const response = await fetch(apiCall, { mode: "cors"});
+    // const weatherData = await response.json();
+    // console.log(apiCall);
+    console.log(coordinateLat);
+}
+
 /***/ })
 
 /******/ 	});
@@ -125,6 +152,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
 /* harmony import */ var _geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./geoLocationConvertAPI */ "./src/geoLocationConvertAPI.js");
+/* harmony import */ var _weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherDataAPI */ "./src/weatherDataAPI.js");
+
 
 
 
@@ -141,6 +170,7 @@ searchButton_DOM.addEventListener("click", () => {
     if (cityName) {
         const coordinates = (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
         console.log(coordinates);
+        // weatherDataAPI(coordinates.lat, coordinates.lon);
     } else return
 })
 })();
