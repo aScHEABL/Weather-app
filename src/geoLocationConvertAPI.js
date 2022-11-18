@@ -10,14 +10,14 @@ export default async function geoLocationConverterAPI(cityName) {
   apiKey;
 
   const response = await fetch(apiCall, { mode: "cors"});
-  const geoData = await response.json();
+  const data = await response.json();
   let coordinates = {
     lat: 0,
     lon: 0
   }
 
-  coordinates.lat = geoData[0].lat;
-  coordinates.lon = geoData[0].lon;
+  coordinates.lat = data[0].lat;
+  coordinates.lon = data[0].lon;
 
   return coordinates;
 }

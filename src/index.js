@@ -14,7 +14,7 @@ searchButton_DOM.addEventListener("click", () => {
     // if boolean returns true, search for the city, if false exit the function
     if (cityName) {
         const coordinates = geoLocationConverterAPI(cityName);
-        console.log(coordinates);
-        // weatherDataAPI(coordinates.lat, coordinates.lon);
+        coordinates.then((coordinates) => console.log(coordinates));
+        
     } else return
 })
