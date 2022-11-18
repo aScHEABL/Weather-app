@@ -24,14 +24,14 @@ async function geoLocationConverterAPI(cityName) {
   apiKey;
 
   const response = await fetch(apiCall, { mode: "cors"});
-  const geoData = await response.json();
+  const data = await response.json();
   let coordinates = {
     lat: 0,
     lon: 0
   }
 
-  coordinates.lat = geoData[0].lat;
-  coordinates.lon = geoData[0].lon;
+  coordinates.lat = data[0].lat;
+  coordinates.lon = data[0].lon;
 
   return coordinates;
 }
@@ -71,18 +71,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ weatherDataAPI)
 /* harmony export */ });
 async function weatherDataAPI(coordinateLat, coordinateLon) {
+    // Convert coordinate from number to string
+    coordinateLat = coordinateLat + "";
+    coordinateLon = coordinateLon + "";
+    
+    const lang = "en";
+    const units = "metric";
     const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
-    const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat="
+    const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat=" +
     coordinateLat +
     "&lon=" + 
     coordinateLon + 
     "&appid=" + 
-    apiKey;
-    
-    // const response = await fetch(apiCall, { mode: "cors"});
-    // const weatherData = await response.json();
-    // console.log(apiCall);
-    console.log(coordinateLat);
+    apiKey +
+    "&units=" +
+    units +
+    "&lang=" +
+    lang;
+
+    const response = await fetch(apiCall, {mode: "cors"});
+    const data = await response.json();
+
+    // Clone the object and assign it to weatherData
+    const weatherData = structuredClone(data);
+    return weatherData;
 }
 
 /***/ })
@@ -169,8 +181,8 @@ searchButton_DOM.addEventListener("click", () => {
     // if boolean returns true, search for the city, if false exit the function
     if (cityName) {
         const coordinates = (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
-        console.log(coordinates);
-        // weatherDataAPI(coordinates.lat, coordinates.lon);
+        coordinates.then((coordinates) => console.log(coordinates));
+        
     } else return
 })
 })();
