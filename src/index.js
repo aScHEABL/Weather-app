@@ -1,6 +1,7 @@
 import stringChecker from "./stringChecker";
 import geoLocationConverterAPI from "./geoLocationConvertAPI";
 import weatherDataAPI from "./weatherDataAPI";
+import userInterface from "./userInterface";
 
 const searchInput_DOM = document.querySelector("[data-search-input]");
 const searchButton_DOM = document.querySelector("[data-search-button]");
@@ -14,9 +15,11 @@ async function getWeatherData() {
     cityName = stringChecker(cityName);
     // If boolean returns true, search for the city, if false exit the function
     if (cityName) {
-        const coordinates = await geoLocationConverterAPI(cityName);
-        const weatherData = await weatherDataAPI(coordinates);
-        console.log(weatherData);
+        // Get the geoData then retrieve the weatherData from the API
+        const geoData = await geoLocationConverterAPI(cityName);
+        const weatherData = await weatherDataAPI(geoData);
+        // Render UI from weatherData
+        userInterface(weatherData, geoData);
     } else return
 }
 
