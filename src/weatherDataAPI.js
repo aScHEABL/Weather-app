@@ -1,7 +1,7 @@
-export default async function weatherDataAPI(coordinateLat, coordinateLon) {
+export default async function weatherDataAPI(coordinates) {
     // Convert coordinate from number to string
-    coordinateLat = coordinateLat + "";
-    coordinateLon = coordinateLon + "";
+    const coordinateLat = coordinates.lat;
+    const coordinateLon = coordinates.lon;
     
     const lang = "en";
     const units = "metric";
