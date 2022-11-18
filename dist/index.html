@@ -179,16 +179,29 @@
     </main>
     <div class="forecast">
       <div class="change-forecast">
-        <div class="daily-button forecast-selected">Daily</div>
-        <div class="hourly-button">Hourly</div>
-        <div class="change-hours" style="display: none">
-          <div class="change-hours-left"></div>
+        <div class="daily-button forecast-selected" data-daily-button>
+          Daily
+        </div>
+        <div class="hourly-button" data-hourly-button>Hourly</div>
+        <div
+          class="change-hours-div"
+          style="display: none"
+          data-change-hours-div
+        >
+          <div
+            class="change-hours-left-arrow"
+            data-change-hours-left-arrow
+          ></div>
           <div class="dot dot1 dot-selected" data-dot="1"></div>
           <div class="dot dot2" data-dot="2"></div>
           <div class="dot dot3" data-dot="3"></div>
-          <div class="change-hours-right"></div>
+          <div
+            class="change-hours-right-arrow"
+            data-change-hours-right-arrow
+          ></div>
         </div>
       </div>
+      <!-- Will come back later-->
       <div class="forecast-hourly-outer-div" style="display: none">
         <div class="forecast-hourly-div">
           <div class="forecast-hourly" id="current-hour-plus-1">
