@@ -173,18 +173,20 @@ const searchInput_DOM = document.querySelector("[data-search-input]");
 const searchButton_DOM = document.querySelector("[data-search-button]");
 let cityName = "";
 
-searchButton_DOM.addEventListener("click", () => {
+searchButton_DOM.addEventListener("click", getWeatherData);
+
+async function getWeatherData() {
     console.log("Search button has been clicked.");
     cityName = searchInput_DOM.value;
     //check if the search input is empty, if not then convert space to +
     cityName = (0,_stringChecker__WEBPACK_IMPORTED_MODULE_0__["default"])(cityName);
     // if boolean returns true, search for the city, if false exit the function
     if (cityName) {
-        const coordinates = (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
-        coordinates.then((coordinates) => console.log(coordinates));
-        
+        const coordinates = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
+        const weatherData = await (0,_weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(coordinates.lat, coordinates.lon);
+        console.log(weatherData);
     } else return
-})
+}
 })();
 
 /******/ })()
