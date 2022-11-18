@@ -70,10 +70,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ weatherDataAPI)
 /* harmony export */ });
-async function weatherDataAPI(coordinateLat, coordinateLon) {
+async function weatherDataAPI(coordinates) {
     // Convert coordinate from number to string
-    coordinateLat = coordinateLat + "";
-    coordinateLon = coordinateLon + "";
+    const coordinateLat = coordinates.lat;
+    const coordinateLon = coordinates.lon;
     
     const lang = "en";
     const units = "metric";
@@ -183,10 +183,21 @@ async function getWeatherData() {
     // if boolean returns true, search for the city, if false exit the function
     if (cityName) {
         const coordinates = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
-        const weatherData = await (0,_weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(coordinates.lat, coordinates.lon);
+        const weatherData = await (0,_weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(coordinates);
         console.log(weatherData);
     } else return
 }
+
+// When the page is loaded, set the default weather to a specific city
+async function initialWeather() {
+    console.log("Initializing the weahter for the default city.")
+    const cityName = "Calgary";
+    const coordinates = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
+    const weatherData = await (0,_weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(coordinates);
+    console.log(weatherData);
+}
+
+// initialWeather();
 })();
 
 /******/ })()
