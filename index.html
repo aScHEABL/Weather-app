@@ -11,13 +11,19 @@
   <body>
     <main>
       <div class="weather-info">
-        <div class="weather-info-description">Few Clouds</div>
-        <div class="weather-info-city">Auckland</div>
-        <div class="weather-info-date">Monday, 14th Nov '22</div>
-        <div class="weather-info-time">9:46 pm</div>
-        <div class="weather-info-temperature">16 °C</div>
-        <div class="weather-info-unit-f">Display °F</div>
-        <div class="weather-info-icon-div">
+        <div class="weather-info-description" data-weather-info-description>
+          Few Clouds
+        </div>
+        <div class="weather-info-city" data-weather-info-city>Auckland</div>
+        <div class="weather-info-date" data-weater-info-date>
+          Monday, 14th Nov '22
+        </div>
+        <div class="weather-info-time" data-weather-info-time>9:46 pm</div>
+        <div class="weather-info-temperature" data-weather-info-temp>16 °C</div>
+        <div class="weather-info-unit-f" data-switch-unit-button>
+          Display °F
+        </div>
+        <div class="weather-info-icon-div" data-weather-info-icon-div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
@@ -39,7 +45,7 @@
           />
           <div class="search-icon" data-search-button></div>
         </div>
-        <div class="error-msg" style="visibility: visible">
+        <div class="error-msg" style="visibility: visible" data-error-msg>
           Location not found.<br />
           Search must be in the form of "City", "City, State" or "City,
           Country".
@@ -80,7 +86,9 @@
           </div>
           <div class="weather-details-info">
             <div class="weather-details-label">Feels like</div>
-            <div class="weather-details-data">21 °C</div>
+            <div class="weather-details-data" data-temperature-feel-like-value>
+              21 °C
+            </div>
           </div>
         </div>
         <div class="weather-details">
@@ -120,7 +128,9 @@
           </div>
           <div class="weather-details-info">
             <div class="weather-details-label">Humidity</div>
-            <div class="weather-details-data">72 %</div>
+            <div class="weather-details-data" data-weather-humidity-value>
+              72 %
+            </div>
           </div>
         </div>
         <div class="weather-details">
@@ -139,7 +149,9 @@
           </div>
           <div class="weather-details-info">
             <div class="weather-details-label">Chance of Rain</div>
-            <div class="weather-details-data">44 %</div>
+            <div class="weather-details-data" data-weather-chance-of-rain>
+              44 %
+            </div>
           </div>
         </div>
         <div class="weather-details">
@@ -158,7 +170,9 @@
           </div>
           <div class="weather-details-info">
             <div class="weather-details-label">Wind Speed</div>
-            <div class="weather-details-data">14.8 km/h</div>
+            <div class="weather-details-data" data-weather-wind-speed-value>
+              14.8 km/h
+            </div>
           </div>
         </div>
       </div>
