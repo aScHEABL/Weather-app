@@ -13,14 +13,20 @@ async function getWeatherData() {
     let cityName = searchInput_DOM.value;
     // Check if the search input is empty, if not then convert space to +
     cityName = stringChecker(cityName);
-    // If boolean returns true, search for the city, if false exit the function
+    // If cityName.length !== 0 search for the city, if cityName.length === 0 exit the function
     if (cityName) {
         // Get the geoData then retrieve the weatherData from the API
+        // If geoData is empty then exit the function
         const geoData = await geoLocationConverterAPI(cityName);
+        if (!geoData) return;
         const weatherData = await weatherDataAPI(geoData);
         // Render UI from weatherData
         userInterface(weatherData, geoData);
-    } else return
+    } else {
+        const errorMsg = document.querySelector("[data-error-msg]");
+        errorMsg.style.visibility = "visible";
+        return;
+    }
 }
 
 // When the page is loaded, set the default weather to a specific city
