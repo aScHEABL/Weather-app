@@ -12,30 +12,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ geoLocationConverterAPI)
 /* harmony export */ });
+
 async function geoLocationConverterAPI(cityName) {
-  console.log(`Search for ${cityName}`)
-  const limitNumber = 1;
-  const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
-  const apiCall = "http://api.openweathermap.org/geo/1.0/direct?q=" +
-  cityName +
-  "&limit=" +
-  limitNumber +
-  "&appid=" +
-  apiKey;
+  const errorMsg = document.querySelector("[data-error-msg]");
+  try {
+    console.log(`Search for ${cityName}`)
+    const limitNumber = 1;
+    const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
+    const apiCall = "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    cityName +
+    "&limit=" +
+    limitNumber +
+    "&appid=" +
+    apiKey;
 
-  const response = await fetch(apiCall, { mode: "cors"});
-  const data = await response.json();
-  let geoData = {
-    cityName: "",
-    lat: 0,
-    lon: 0
+    const response = await fetch(apiCall, { mode: "cors"});
+    const data = await response.json();
+    
+    // Clone the object and assign to geoData
+    const geoData = structuredClone(data);
+    console.log(geoData)
+
+    // (geoData.length === 0) ? errorMsg.style.visibility = "visible" : geoData[0];
+    if (geoData.length === 0) {
+      errorMsg.style.visibility = "visible";
+      console.log("Did not find any result.");
+      return false;
+    } else return geoData[0];
+  } catch (error) {
+    console.error(error)
+    errorMsg.style.visibility = "visible";
   }
-
-  geoData.cityName = data[0].name;
-  geoData.lat = data[0].lat;
-  geoData.lon = data[0].lon;
-
-  return geoData;
 }
 
 /***/ }),
@@ -75,8 +82,15 @@ __webpack_require__.r(__webpack_exports__);
 function userInterface(weatherData, geoData) {
     console.log(weatherData);
     console.log(geoData);
-    const weatherInfoDesc = document.querySelector("[data-weather-info-description]");
-
+    let dom_object = {
+        weatherInfoDesc: document.querySelector("[data-weather-info-description]"),
+        weatherInfoCity: document.querySelector("[data-weather-info-city]"),
+        weatherInfoDate: document.querySelector("[data-weather-info-time]"),
+        weatherInfoTemp: document.querySelector("[data-weather-info-temp]")
+    }
+    dom_object.weatherInfoDesc.textContent = weatherData.weather.description;
+    dom_object.weatherInfoCity.textContent = geoData.name;
+    dom_object.weatherInfoTemp.textContent = weatherData.main.temp;
 }
 
 /***/ }),
@@ -202,14 +216,20 @@ async function getWeatherData() {
     let cityName = searchInput_DOM.value;
     // Check if the search input is empty, if not then convert space to +
     cityName = (0,_stringChecker__WEBPACK_IMPORTED_MODULE_0__["default"])(cityName);
-    // If boolean returns true, search for the city, if false exit the function
+    // If cityName.length !== 0 search for the city, if cityName.length === 0 exit the function
     if (cityName) {
         // Get the geoData then retrieve the weatherData from the API
+        // If geoData is empty then exit the function
         const geoData = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
+        if (!geoData) return;
         const weatherData = await (0,_weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
         // Render UI from weatherData
         (0,_userInterface__WEBPACK_IMPORTED_MODULE_3__["default"])(weatherData, geoData);
-    } else return
+    } else {
+        const errorMsg = document.querySelector("[data-error-msg]");
+        errorMsg.style.visibility = "visible";
+        return;
+    }
 }
 
 // When the page is loaded, set the default weather to a specific city
