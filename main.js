@@ -2,6 +2,45 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/currentWeatherDataAPI.js":
+/*!**************************************!*\
+  !*** ./src/currentWeatherDataAPI.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ currentweatherDataAPI)
+/* harmony export */ });
+async function currentweatherDataAPI(geoData) {
+    // Convert coordinate from number to string
+    const coordinateLat = geoData.lat;
+    const coordinateLon = geoData.lon;
+    
+    const lang = "en";
+    const units = "metric";
+    const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
+    const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat=" +
+    coordinateLat +
+    "&lon=" + 
+    coordinateLon + 
+    "&appid=" + 
+    apiKey +
+    "&units=" +
+    units +
+    "&lang=" +
+    lang;
+
+    const response = await fetch(apiCall, {mode: "cors"});
+    const data = await response.json();
+
+    // Clone the object and assign it to weatherData
+    const weatherData = structuredClone(data);
+    return weatherData;
+}
+
+/***/ }),
+
 /***/ "./src/geoLocationConvertAPI.js":
 /*!**************************************!*\
   !*** ./src/geoLocationConvertAPI.js ***!
@@ -79,57 +118,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ userInterface)
 /* harmony export */ });
-function userInterface(weatherData, geoData) {
+function userInterface(weatherData, geoData) { 
     console.log(weatherData);
     console.log(geoData);
     let dom_object = {
         weatherInfoDesc: document.querySelector("[data-weather-info-description]"),
         weatherInfoCity: document.querySelector("[data-weather-info-city]"),
         weatherInfoDate: document.querySelector("[data-weather-info-time]"),
-        weatherInfoTemp: document.querySelector("[data-weather-info-temp]")
+        weatherInfoTemp: document.querySelector("[data-weather-info-temp]"),
+        weatherDetailsFeelLikeTemp: document.querySelector("[data-temperature-feel-like-value]"),
+        weatherDetailsHumidity: document.querySelector("[data-weather-humidity-value]"),
+        weatherDetailsChanceOfRain: document.querySelector("[data-weather-chance-of-rain]"),
+        weatherDetailsWindSpeed: document.querySelector("[data-weather-wind-speed-value]")
     }
+    // Top left weather info
     dom_object.weatherInfoDesc.textContent = weatherData.weather.description;
     dom_object.weatherInfoCity.textContent = geoData.name;
     dom_object.weatherInfoTemp.textContent = weatherData.main.temp;
-}
-
-/***/ }),
-
-/***/ "./src/weatherDataAPI.js":
-/*!*******************************!*\
-  !*** ./src/weatherDataAPI.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ weatherDataAPI)
-/* harmony export */ });
-async function weatherDataAPI(geoData) {
-    // Convert coordinate from number to string
-    const coordinateLat = geoData.lat;
-    const coordinateLon = geoData.lon;
-    
-    const lang = "en";
-    const units = "metric";
-    const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
-    const apiCall = "https://api.openweathermap.org/data/2.5/weather?lat=" +
-    coordinateLat +
-    "&lon=" + 
-    coordinateLon + 
-    "&appid=" + 
-    apiKey +
-    "&units=" +
-    units +
-    "&lang=" +
-    lang;
-
-    const response = await fetch(apiCall, {mode: "cors"});
-    const data = await response.json();
-
-    // Clone the object and assign it to weatherData
-    const weatherData = structuredClone(data);
-    return weatherData;
+    // Top right weather details
+    dom_object.weatherDetailsFeelLikeTemp = weatherData.main.feels_like + " °C";
+    dom_object.weatherDetailsHumidity = weatherData.main.humidity + " %";
 }
 
 /***/ })
@@ -199,7 +207,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
 /* harmony import */ var _geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./geoLocationConvertAPI */ "./src/geoLocationConvertAPI.js");
-/* harmony import */ var _weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weatherDataAPI */ "./src/weatherDataAPI.js");
+/* harmony import */ var _currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./currentWeatherDataAPI */ "./src/currentWeatherDataAPI.js");
 /* harmony import */ var _userInterface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./userInterface */ "./src/userInterface.js");
 
 
@@ -222,7 +230,7 @@ async function getWeatherData() {
         // If geoData is empty then exit the function
         const geoData = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
         if (!geoData) return;
-        const weatherData = await (0,_weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
+        const weatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
         // Render UI from weatherData
         (0,_userInterface__WEBPACK_IMPORTED_MODULE_3__["default"])(weatherData, geoData);
     } else {
@@ -237,7 +245,7 @@ async function initialWeather() {
     console.log("Initializing the weahter for the default city.")
     const cityName = "Calgary";
     const coordinates = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
-    const weatherData = await (0,_weatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(coordinates);
+    const weatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(coordinates);
     console.log(weatherData);
 }
 
