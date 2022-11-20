@@ -1,6 +1,6 @@
 import stringChecker from "./stringChecker";
 import geoLocationConverterAPI from "./geoLocationConvertAPI";
-import weatherDataAPI from "./weatherDataAPI";
+import currentweatherDataAPI from "./currentWeatherDataAPI";
 import userInterface from "./userInterface";
 
 const searchInput_DOM = document.querySelector("[data-search-input]");
@@ -19,7 +19,7 @@ async function getWeatherData() {
         // If geoData is empty then exit the function
         const geoData = await geoLocationConverterAPI(cityName);
         if (!geoData) return;
-        const weatherData = await weatherDataAPI(geoData);
+        const weatherData = await currentweatherDataAPI(geoData);
         // Render UI from weatherData
         userInterface(weatherData, geoData);
     } else {
@@ -34,7 +34,7 @@ async function initialWeather() {
     console.log("Initializing the weahter for the default city.")
     const cityName = "Calgary";
     const coordinates = await geoLocationConverterAPI(cityName);
-    const weatherData = await weatherDataAPI(coordinates);
+    const weatherData = await currentweatherDataAPI(coordinates);
     console.log(weatherData);
 }
 
