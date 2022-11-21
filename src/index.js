@@ -21,7 +21,7 @@ async function getWeatherData() {
         const geoData = await geoLocationConverterAPI(cityName);
         if (!geoData) return;
         const currentWeatherData = await currentweatherDataAPI(geoData);
-        const forecastWeatherData = await forecastWeatherDataAPI(geoData);
+        // const forecastWeatherData = await forecastWeatherDataAPI(geoData);
         // Render UI from weatherData
         userInterface(currentWeatherData, geoData);
     } else {

@@ -16,7 +16,6 @@ async function currentweatherDataAPI(geoData) {
     // Convert coordinate from number to string
     const coordinateLat = geoData.lat;
     const coordinateLon = geoData.lon;
-    
     const lang = "en";
     const units = "metric";
     const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
@@ -24,12 +23,12 @@ async function currentweatherDataAPI(geoData) {
     coordinateLat +
     "&lon=" + 
     coordinateLon + 
-    "&appid=" + 
-    apiKey +
     "&units=" +
     units +
     "&lang=" +
-    lang;
+    lang +
+    "&appid=" + 
+    apiKey;
 
     const response = await fetch(apiCall, {mode: "cors"});
     const data = await response.json();
@@ -58,7 +57,7 @@ async function forecastWeatherDataAPI(geoData) {
     const coordinateLat = geoData.lat;
     const coordinateLon = geoData.lon;
     const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
-    const apiCall = "api.openweathermap.org/data/2.5/forecast/daily?lat=" +
+    const apiCall = "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" +
     coordinateLat +
     "&lon=" + 
     coordinateLon +
@@ -71,12 +70,13 @@ async function forecastWeatherDataAPI(geoData) {
     "&appid=" + 
     apiKey;
 
-    const response = await fetch(apiCall, {mode: "cors"});
-    const data = await response.json();
+    // const response = await fetch(apiCall, {mode: "cors"});
+    // const data = await response.json();
+    console.log(apiCall);
 
     // Clone the object and assign it to forecastWeatherData
-    const forecastWeatherData = structuredClone(data);
-    return forecastWeatherData;
+    // const forecastWeatherData = structuredClone(data);
+    // return forecastWeatherData;
 }
 
 /***/ }),
@@ -158,8 +158,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ userInterface)
 /* harmony export */ });
-function userInterface(weatherData, geoData) { 
-    // console.log(weatherData);
+function userInterface(currentWeatherData, geoData) { 
+    // console.log(currentWeatherData);
+    // console.log(forecastWeatherData);
     // console.log(geoData);
     let dom_object = {
         weatherInfoDesc: document.querySelector("[data-weather-info-description]"),
@@ -172,12 +173,12 @@ function userInterface(weatherData, geoData) {
         weatherDetailsWindSpeed: document.querySelector("[data-weather-wind-speed-value]")
     }
     // Top left weather info
-    dom_object.weatherInfoDesc.textContent = weatherData.weather.description;
+    dom_object.weatherInfoDesc.textContent = currentWeatherData.weather.description;
     dom_object.weatherInfoCity.textContent = geoData.name;
-    dom_object.weatherInfoTemp.textContent = weatherData.main.temp;
+    dom_object.weatherInfoTemp.textContent = currentWeatherData.main.temp;
     // Top right weather details
-    dom_object.weatherDetailsFeelLikeTemp.textContent = weatherData.main.feels_like + " °C";
-    dom_object.weatherDetailsHumidity.textContent = weatherData.main.humidity + " %";
+    dom_object.weatherDetailsFeelLikeTemp.textContent = currentWeatherData.main.feels_like + " °C";
+    dom_object.weatherDetailsHumidity.textContent = currentWeatherData.main.humidity + " %";
     // dom_object.weatherDetailsChanceOfRain.textContent = weatherData
 }
 
@@ -274,7 +275,7 @@ async function getWeatherData() {
         const geoData = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
         if (!geoData) return;
         const currentWeatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
-        const forecastWeatherData = await (0,_forecastWeatherDataAPI__WEBPACK_IMPORTED_MODULE_3__["default"])(geoData);
+        // const forecastWeatherData = await forecastWeatherDataAPI(geoData);
         // Render UI from weatherData
         (0,_userInterface__WEBPACK_IMPORTED_MODULE_4__["default"])(currentWeatherData, geoData);
     } else {

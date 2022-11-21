@@ -2,7 +2,6 @@ export default async function currentweatherDataAPI(geoData) {
     // Convert coordinate from number to string
     const coordinateLat = geoData.lat;
     const coordinateLon = geoData.lon;
-    
     const lang = "en";
     const units = "metric";
     const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
@@ -10,12 +9,12 @@ export default async function currentweatherDataAPI(geoData) {
     coordinateLat +
     "&lon=" + 
     coordinateLon + 
-    "&appid=" + 
-    apiKey +
     "&units=" +
     units +
     "&lang=" +
-    lang;
+    lang +
+    "&appid=" + 
+    apiKey;
 
     const response = await fetch(apiCall, {mode: "cors"});
     const data = await response.json();

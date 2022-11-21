@@ -5,7 +5,7 @@ export default async function forecastWeatherDataAPI(geoData) {
     const coordinateLat = geoData.lat;
     const coordinateLon = geoData.lon;
     const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
-    const apiCall = "api.openweathermap.org/data/2.5/forecast/daily?lat=" +
+    const apiCall = "https://api.openweathermap.org/data/2.5/forecast/daily?lat=" +
     coordinateLat +
     "&lon=" + 
     coordinateLon +
@@ -18,10 +18,11 @@ export default async function forecastWeatherDataAPI(geoData) {
     "&appid=" + 
     apiKey;
 
-    const response = await fetch(apiCall, {mode: "cors"});
-    const data = await response.json();
+    // const response = await fetch(apiCall, {mode: "cors"});
+    // const data = await response.json();
+    console.log(apiCall);
 
     // Clone the object and assign it to forecastWeatherData
-    const forecastWeatherData = structuredClone(data);
-    return forecastWeatherData;
+    // const forecastWeatherData = structuredClone(data);
+    // return forecastWeatherData;
 }
