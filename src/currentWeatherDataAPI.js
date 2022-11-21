@@ -20,7 +20,7 @@ export default async function currentweatherDataAPI(geoData) {
     const response = await fetch(apiCall, {mode: "cors"});
     const data = await response.json();
 
-    // Clone the object and assign it to weatherData
-    const weatherData = structuredClone(data);
-    return weatherData;
+    // Clone the object and assign it to currentWeatherData
+    const currentWeatherData = structuredClone(data);
+    return currentWeatherData;
 }
