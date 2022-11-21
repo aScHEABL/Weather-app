@@ -17,7 +17,7 @@ export default async function geoLocationConverterAPI(cityName) {
     
     // Clone the object and assign to geoData
     const geoData = structuredClone(data);
-    console.log(geoData)
+    // console.log(geoData)
 
     // (geoData.length === 0) ? errorMsg.style.visibility = "visible" : geoData[0];
     if (geoData.length === 0) {

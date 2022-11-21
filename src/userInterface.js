@@ -1,6 +1,6 @@
 export default function userInterface(weatherData, geoData) { 
-    console.log(weatherData);
-    console.log(geoData);
+    // console.log(weatherData);
+    // console.log(geoData);
     let dom_object = {
         weatherInfoDesc: document.querySelector("[data-weather-info-description]"),
         weatherInfoCity: document.querySelector("[data-weather-info-city]"),
