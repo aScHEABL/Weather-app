@@ -15,13 +15,13 @@ async function getWeatherData() {
     cityName = stringChecker(cityName);
     // If cityName.length !== 0 search for the city, if cityName.length === 0 exit the function
     if (cityName) {
-        // Get the geoData then retrieve the weatherData from the API
+        // Get the geoData then retrieve the currentWeatherData from the API
         // If geoData is empty then exit the function
         const geoData = await geoLocationConverterAPI(cityName);
         if (!geoData) return;
-        const weatherData = await currentweatherDataAPI(geoData);
+        const currentWeatherData = await currentweatherDataAPI(geoData);
         // Render UI from weatherData
-        userInterface(weatherData, geoData);
+        userInterface(currentWeatherData, geoData);
     } else {
         const errorMsg = document.querySelector("[data-error-msg]");
         errorMsg.style.visibility = "visible";
@@ -30,12 +30,13 @@ async function getWeatherData() {
 }
 
 // When the page is loaded, set the default weather to a specific city
-async function initialWeather() {
+async function defaultWeather() {
     console.log("Initializing the weahter for the default city.")
     const cityName = "Calgary";
-    const coordinates = await geoLocationConverterAPI(cityName);
-    const weatherData = await currentweatherDataAPI(coordinates);
-    console.log(weatherData);
+    const geoData = await geoLocationConverterAPI(cityName);
+    const currentWeatherData = await currentweatherDataAPI(geoData);
+    userInterface(currentWeatherData, geoData);
+    console.log(currentWeatherData);
 }
 
-// initialWeather();
+// defaultWeather();
