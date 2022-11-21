@@ -136,8 +136,9 @@ function userInterface(weatherData, geoData) {
     dom_object.weatherInfoCity.textContent = geoData.name;
     dom_object.weatherInfoTemp.textContent = weatherData.main.temp;
     // Top right weather details
-    dom_object.weatherDetailsFeelLikeTemp = weatherData.main.feels_like + " °C";
-    dom_object.weatherDetailsHumidity = weatherData.main.humidity + " %";
+    dom_object.weatherDetailsFeelLikeTemp.textContent = weatherData.main.feels_like + " °C";
+    dom_object.weatherDetailsHumidity.textContent = weatherData.main.humidity + " %";
+    // dom_object.weatherDetailsChanceOfRain.textContent = weatherData
 }
 
 /***/ })
@@ -226,13 +227,13 @@ async function getWeatherData() {
     cityName = (0,_stringChecker__WEBPACK_IMPORTED_MODULE_0__["default"])(cityName);
     // If cityName.length !== 0 search for the city, if cityName.length === 0 exit the function
     if (cityName) {
-        // Get the geoData then retrieve the weatherData from the API
+        // Get the geoData then retrieve the currentWeatherData from the API
         // If geoData is empty then exit the function
         const geoData = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
         if (!geoData) return;
-        const weatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
+        const currentWeatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
         // Render UI from weatherData
-        (0,_userInterface__WEBPACK_IMPORTED_MODULE_3__["default"])(weatherData, geoData);
+        (0,_userInterface__WEBPACK_IMPORTED_MODULE_3__["default"])(currentWeatherData, geoData);
     } else {
         const errorMsg = document.querySelector("[data-error-msg]");
         errorMsg.style.visibility = "visible";
@@ -241,15 +242,16 @@ async function getWeatherData() {
 }
 
 // When the page is loaded, set the default weather to a specific city
-async function initialWeather() {
+async function defaultWeather() {
     console.log("Initializing the weahter for the default city.")
     const cityName = "Calgary";
-    const coordinates = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
-    const weatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(coordinates);
-    console.log(weatherData);
+    const geoData = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
+    const currentWeatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
+    (0,_userInterface__WEBPACK_IMPORTED_MODULE_3__["default"])(currentWeatherData, geoData);
+    console.log(currentWeatherData);
 }
 
-// initialWeather();
+// defaultWeather();
 })();
 
 /******/ })()

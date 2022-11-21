@@ -16,6 +16,7 @@ export default function userInterface(weatherData, geoData) {
     dom_object.weatherInfoCity.textContent = geoData.name;
     dom_object.weatherInfoTemp.textContent = weatherData.main.temp;
     // Top right weather details
-    dom_object.weatherDetailsFeelLikeTemp = weatherData.main.feels_like + " °C";
-    dom_object.weatherDetailsHumidity = weatherData.main.humidity + " %";
+    dom_object.weatherDetailsFeelLikeTemp.textContent = weatherData.main.feels_like + " °C";
+    dom_object.weatherDetailsHumidity.textContent = weatherData.main.humidity + " %";
+    // dom_object.weatherDetailsChanceOfRain.textContent = weatherData
 }
