@@ -34,9 +34,49 @@ async function currentweatherDataAPI(geoData) {
     const response = await fetch(apiCall, {mode: "cors"});
     const data = await response.json();
 
-    // Clone the object and assign it to weatherData
-    const weatherData = structuredClone(data);
-    return weatherData;
+    // Clone the object and assign it to currentWeatherData
+    const currentWeatherData = structuredClone(data);
+    return currentWeatherData;
+}
+
+/***/ }),
+
+/***/ "./src/forecastWeatherDataAPI.js":
+/*!***************************************!*\
+  !*** ./src/forecastWeatherDataAPI.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ forecastWeatherDataAPI)
+/* harmony export */ });
+async function forecastWeatherDataAPI(geoData) {
+    const lang = "en";
+    const units = "metric";
+    const forecastDays = "7";
+    const coordinateLat = geoData.lat;
+    const coordinateLon = geoData.lon;
+    const apiKey = "9b708ac24f65eeeba73e728c5a9e1d80";
+    const apiCall = "api.openweathermap.org/data/2.5/forecast/daily?lat=" +
+    coordinateLat +
+    "&lon=" + 
+    coordinateLon +
+    "&cnt=" + 
+    forecastDays + 
+    "&units=" + 
+    units + 
+    "&lang=" + 
+    lang +
+    "&appid=" + 
+    apiKey;
+
+    const response = await fetch(apiCall, {mode: "cors"});
+    const data = await response.json();
+
+    // Clone the object and assign it to forecastWeatherData
+    const forecastWeatherData = structuredClone(data);
+    return forecastWeatherData;
 }
 
 /***/ }),
@@ -70,7 +110,7 @@ async function geoLocationConverterAPI(cityName) {
     
     // Clone the object and assign to geoData
     const geoData = structuredClone(data);
-    console.log(geoData)
+    // console.log(geoData)
 
     // (geoData.length === 0) ? errorMsg.style.visibility = "visible" : geoData[0];
     if (geoData.length === 0) {
@@ -119,8 +159,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ userInterface)
 /* harmony export */ });
 function userInterface(weatherData, geoData) { 
-    console.log(weatherData);
-    console.log(geoData);
+    // console.log(weatherData);
+    // console.log(geoData);
     let dom_object = {
         weatherInfoDesc: document.querySelector("[data-weather-info-description]"),
         weatherInfoCity: document.querySelector("[data-weather-info-city]"),
@@ -209,7 +249,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stringChecker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringChecker */ "./src/stringChecker.js");
 /* harmony import */ var _geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./geoLocationConvertAPI */ "./src/geoLocationConvertAPI.js");
 /* harmony import */ var _currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./currentWeatherDataAPI */ "./src/currentWeatherDataAPI.js");
-/* harmony import */ var _userInterface__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./userInterface */ "./src/userInterface.js");
+/* harmony import */ var _forecastWeatherDataAPI__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./forecastWeatherDataAPI */ "./src/forecastWeatherDataAPI.js");
+/* harmony import */ var _userInterface__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./userInterface */ "./src/userInterface.js");
+
 
 
 
@@ -232,8 +274,9 @@ async function getWeatherData() {
         const geoData = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
         if (!geoData) return;
         const currentWeatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
+        const forecastWeatherData = await (0,_forecastWeatherDataAPI__WEBPACK_IMPORTED_MODULE_3__["default"])(geoData);
         // Render UI from weatherData
-        (0,_userInterface__WEBPACK_IMPORTED_MODULE_3__["default"])(currentWeatherData, geoData);
+        (0,_userInterface__WEBPACK_IMPORTED_MODULE_4__["default"])(currentWeatherData, geoData);
     } else {
         const errorMsg = document.querySelector("[data-error-msg]");
         errorMsg.style.visibility = "visible";
@@ -247,7 +290,7 @@ async function defaultWeather() {
     const cityName = "Calgary";
     const geoData = await (0,_geoLocationConvertAPI__WEBPACK_IMPORTED_MODULE_1__["default"])(cityName);
     const currentWeatherData = await (0,_currentWeatherDataAPI__WEBPACK_IMPORTED_MODULE_2__["default"])(geoData);
-    (0,_userInterface__WEBPACK_IMPORTED_MODULE_3__["default"])(currentWeatherData, geoData);
+    (0,_userInterface__WEBPACK_IMPORTED_MODULE_4__["default"])(currentWeatherData, geoData);
     console.log(currentWeatherData);
 }
 

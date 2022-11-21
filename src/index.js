@@ -1,6 +1,7 @@
 import stringChecker from "./stringChecker";
 import geoLocationConverterAPI from "./geoLocationConvertAPI";
 import currentweatherDataAPI from "./currentWeatherDataAPI";
+import forecastWeatherDataAPI from "./forecastWeatherDataAPI";
 import userInterface from "./userInterface";
 
 const searchInput_DOM = document.querySelector("[data-search-input]");
@@ -20,6 +21,7 @@ async function getWeatherData() {
         const geoData = await geoLocationConverterAPI(cityName);
         if (!geoData) return;
         const currentWeatherData = await currentweatherDataAPI(geoData);
+        const forecastWeatherData = await forecastWeatherDataAPI(geoData);
         // Render UI from weatherData
         userInterface(currentWeatherData, geoData);
     } else {
