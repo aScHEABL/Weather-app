@@ -1,3 +1,4 @@
+import "./style.css";
 import stringChecker from "./stringChecker";
 import geoLocationConverterAPI from "./geoLocationConvertAPI";
 import currentweatherDataAPI from "./currentWeatherDataAPI";
